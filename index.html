@@ -39,6 +39,12 @@
         {
             background-color: #F2B300;
         }
+        .pulsante
+        {
+            background-color: #012b8a;
+            border-radius: 5px;
+            color: #F2B300;
+        }
 
 
     </style>
@@ -70,17 +76,50 @@
         </div>
         <div class="row">
             <div class="col-sm-4 mainText"></div>
-            <div class="col-sm-4 mainText">IBAN:    IT37U0760103400001063521783</div>
+            <div class="col-sm-4 mainText">IBAN:    <b id="iban">IT37U0760103400001063521783</b></div>
             <div class="col-sm-4 mainText"></div>
         </div>
-        <div class="row lastRow">
+        <div class="row">
+            <div class="col-sm-4 mainText"></div>
+            <div class="col-sm-4 mainText"><button class="pulsante" onclick="copiaTesto('iban')">Copia IBAN</button></div>
+            <div class="col-sm-4 mainText"></div>
+        </div>
+        <div class="row" style="height: 5vh;">
+            <div class="col-sm-4 mainText"></div>
+            <div class="col-sm-4 mainText"></div>
+            <div class="col-sm-4 mainText"></div>
+        </div>
+        <div class="row">
             <div class="col-sm-4 mainText"></div>      
-            <div class="col-sm-4 mainText"> Intestatto a: A.S.D. OLYMPIA VOLLEY CASALNUOVO</div>      
-            <div class="col-sm-4 mainText"></div>      
+            <div class="col-sm-4 mainText"> Intestatto a: <b id="denom">A.S.D. OLYMPIA VOLLEY CASALNUOVO</b></div>      
+            <div class="col-sm-4 mainText"></div>    
+        </div>
+        <div class="row">
+            <div class="col-sm-4 mainText"></div>
+            <div class="col-sm-4 mainText"><button class="pulsante" onclick="copiaTesto('denom')">Copia Denominazione</button></div> 
+            <div class="col-sm-4 mainText"></div>
         </div>
 
 </body>
-<script>
+    <script>
+        function copiaTesto(id) {
+            // Seleziona l'elemento span
+            var testo = document.getElementById(id).innerText;
 
-</script>
+            // Crea un elemento input temporaneo
+            var inputTemp = document.createElement("input");
+            inputTemp.value = testo;
+            document.body.appendChild(inputTemp);
+
+            // Seleziona il testo dell'input
+            inputTemp.select();
+            document.execCommand("copy");
+
+            // Rimuovi l'input temporaneo
+            document.body.removeChild(inputTemp);
+
+            // Notifica l'utente
+            alert("Testo copiato: " + testo);
+        }
+    </script>
 </html>
